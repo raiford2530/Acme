@@ -1,6 +1,8 @@
 ﻿using Acme.Shop.Application.Products;
+using Acme.Shop.Contracts.Common;
 using Acme.Shop.Contracts.Products;
 using MediatR;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Acme.Shop.Api.Controllers
@@ -28,6 +30,14 @@ namespace Acme.Shop.Api.Controllers
         {
             var res = await _mediator.Send(new GetProductByIdQuery(id), ct);
             return res is null ? NotFound() : Ok(res);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<PagedResponse<ProductResponse>>> List(
+            [FromQuery] ProductListRequest request, CancellationToken ct)
+        {
+            var result = await _mediator.Send(new ListProductsQuery(request), ct);
+            return Ok(result);
         }
     }
 }
