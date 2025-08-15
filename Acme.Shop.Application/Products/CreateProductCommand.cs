@@ -1,4 +1,5 @@
-﻿using Acme.Shop.Application.Interfaces;
+﻿using Acme.Shop.Application.Common.Errors;
+using Acme.Shop.Application.Interfaces;
 using Acme.Shop.Contracts.Products;
 using Acme.Shop.Domain.Entities;
 using FluentValidation;
@@ -28,7 +29,7 @@ namespace Acme.Shop.Application.Products
             await _validator.ValidateAndThrowAsync(cmd.Request, ct);
 
             if (await _productRepository.ExistsBySkuAsync(cmd.Request.Sku, ct))
-                throw new ValidationException($"SKU '{cmd.Request.Sku}' already exists.");
+                throw new ConflictException($"SKU '{cmd.Request.Sku}' already exists.");
 
             var entity = new Product(cmd.Request.Sku, cmd.Request.Name, cmd.Request.Price);
             await _productRepository.AddAsync(entity, ct);

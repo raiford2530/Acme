@@ -1,4 +1,5 @@
 
+using Acme.Shop.Api.Middleware;
 using Acme.Shop.Application.Products;
 using Acme.Shop.Infrastructure;
 using FluentValidation;
@@ -43,6 +44,8 @@ namespace Acme.Shop.Api
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            app.UseMiddleware<ProblemDetailsMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
