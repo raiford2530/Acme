@@ -13,4 +13,9 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Acme.Shop.Contracts\Acme.Shop.Contracts.csproj" />
+    <ProjectReference Include="..\Acme.Shop.Infrastructure\Acme.Shop.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
