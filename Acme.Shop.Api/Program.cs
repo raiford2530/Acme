@@ -1,6 +1,5 @@
 
 using Acme.Shop.Application.Products;
-using Acme.Shop.Application.Products.Commands;
 using Acme.Shop.Infrastructure;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -26,9 +25,8 @@ namespace Acme.Shop.Api
 
             builder.Host.UseSerilog();
 
-            //Add DbContext
-            builder.Services.AddDbContext<AppDbContext>(opt =>
-                opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+            //Add infrastructure services
+            builder.Services.AddInfrastructure(builder.Configuration);
 
 
             // MediatR + FluentValidation (scan Application assembly)

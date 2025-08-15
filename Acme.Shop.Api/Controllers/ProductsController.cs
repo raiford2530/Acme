@@ -1,9 +1,6 @@
-﻿using Acme.Shop.Application.Products.Commands;
-using Acme.Shop.Application.Products.Queries;
+﻿using Acme.Shop.Application.Products;
 using Acme.Shop.Contracts.Products;
 using MediatR;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Acme.Shop.Api.Controllers
